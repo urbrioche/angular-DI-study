@@ -1,0 +1,23 @@
+<h2 style="color: green">OrderService的注入範圍是Module</h2>
+<h3>這是componet裡面的price</h3>
+<app-order-as-singleton [price]="10" #order1></app-order-as-singleton>
+<app-order-as-singleton [price]="20" #order2></app-order-as-singleton>
+
+<h3>這是service裡面的price</h3>
+<div>the price in service is {{ order1.orderService.price }}</div>
+<div>the price in serivce is {{ order2.orderService.price }}</div>
+<div style="margin-top:6px; color: blue; font-size:1.5em">
+  可以看到在service內的price最後都是20 (被最後的值覆蓋)
+</div>
+<hr />
+<h2 style="color: green">OrderService的注入範圍是per component/dependency</h2>
+<h3>這是componet裡面的price</h3>
+<app-order-as-transient [price]="30" #orderPD1></app-order-as-transient>
+<app-order-as-transient [price]="40" #orderPD2></app-order-as-transient>
+
+<h3>這是service裡面的price</h3>
+<div>the price in service is {{ orderPD1.orderService.price }}</div>
+<div>the price in serivce is {{ orderPD2.orderService.price }}</div>
+<div style="margin-top:6px; color: blue; font-size:1.5em">
+  可以看到在service內的price和component的數字是一致的
+</div>
