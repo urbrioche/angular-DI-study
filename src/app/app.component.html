@@ -60,8 +60,8 @@
 ></app-order-as-transient>
 
 <h3>這是service裡面的logger</h3>
-<div>the price in service is {{ orderPD3.orderService.logger.version }}</div>
-<div>the price in serivce is {{ orderPD4.orderService.logger.version }}</div>
+<div>the logger in service is {{ orderPD3.orderService.logger.version }}</div>
+<div>the logger in serivce is {{ orderPD4.orderService.logger.version }}</div>
 <div style="margin-top:6px; color: blue; font-size:1.5em">
-  <!-- 待補上 -->
+  因為沒有在component的providers加上LoggerService，所以LoggerService會以singleton注入
 </div>
