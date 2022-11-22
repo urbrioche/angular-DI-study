@@ -21,3 +21,47 @@
 <div style="margin-top:6px; color: blue; font-size:1.5em">
   可以看到在service內的price和component的數字是一致的
 </div>
+<hr />
+<h2 style="color: green">Order/Logger Service的注入範圍是Module</h2>
+<h3>這是componet裡面的price/logger</h3>
+<app-order-as-singleton
+  [price]="10"
+  loggerVersion="A"
+  #order3
+></app-order-as-singleton>
+<app-order-as-singleton
+  loggerVersion="B"
+  [price]="20"
+  #order4
+></app-order-as-singleton>
+
+<h3>這是service裡面的logger</h3>
+<div>the logger in service is {{ order3.orderService.logger.version }}</div>
+<div>the logger in serivce is {{ order4.orderService.logger.version }}</div>
+<div style="margin-top:6px; color: blue; font-size:1.5em">
+  可以看到在service內的price最後都是200 (被最後的值覆蓋)
+</div>
+
+<hr />
+<h2 style="color: green">
+  OrderService的注入範圍是per component/dependency，但是，LoggerService是Module
+  (singleton)
+</h2>
+<h3>這是componet裡面的price</h3>
+<app-order-as-transient
+  [price]="300"
+  loggerVersion="C"
+  #orderPD3
+></app-order-as-transient>
+<app-order-as-transient
+  [price]="400"
+  loggerVersion="D"
+  #orderPD4
+></app-order-as-transient>
+
+<h3>這是service裡面的logger</h3>
+<div>the price in service is {{ orderPD3.orderService.logger.version }}</div>
+<div>the price in serivce is {{ orderPD4.orderService.logger.version }}</div>
+<div style="margin-top:6px; color: blue; font-size:1.5em">
+  <!-- 待補上 -->
+</div>

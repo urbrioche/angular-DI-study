@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { LoggerService } from '../logger.service';
 import { OrderService } from '../order.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { OrderService } from '../order.service';
   providers: [OrderService],
 })
 export class OrderAsTransientComponent implements OnInit {
-  @Input() name: string;
+  private _loggerVersion: string;
   private _price: any;
   @Input() set price(value) {
     this._price = value;
@@ -19,6 +20,15 @@ export class OrderAsTransientComponent implements OnInit {
 
   get price(): number {
     return this._price;
+  }
+
+  @Input() set loggerVersion(value: string) {
+    this._loggerVersion = value;
+    this.orderService.logger.version = value;
+  }
+
+  get loggerVersion(): string {
+    return this._loggerVersion;
   }
 
   constructor(public orderService: OrderService) {}

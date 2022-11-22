@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
+import { LoggerService } from './logger.service';
 
 @Injectable({ providedIn: 'root' })
 export class OrderService {
   _price?: number;
-  constructor() {}
+  constructor(public logger: LoggerService) {}
 
   get price(): number {
     return this._price;
